@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Mahesh - Computer Science student, programmer and aspiring ethical hacker.">
+
+    <title>Mahesh | Ethical Hacker & Developer</title>
+
+    <style>
+        /* =========================
+           RESET
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #020805;
+            color: #d7ffe5;
+            font-family: "Courier New", monospace;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* =========================
+           MATRIX BACKGROUND
+        ========================= */
+
+        #matrix {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            opacity: 0.16;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(circle at center,
+                    rgba(0, 255, 100, 0.08),
+                    transparent 55%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 18px 8%;
+
+            background: rgba(0, 10, 5, 0.88);
+            backdrop-filter: blur(10px);
+
+            border-bottom: 1px solid #00ff66;
+        }
+
+        .logo {
+            color: #00ff66;
+            font-size: 22px;
+            font-weight: bold;
+            text-shadow: 0 0 12px #00ff66;
+        }
+
+        .logo span {
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #b8ffc9;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #00ff66;
+            text-shadow: 0 0 10px #00ff66;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 100px 8% 50px;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+        }
+
+        .terminal {
+            color: #00ff66;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .terminal::before {
+            content: "root@mahesh:~$ ";
+            color: #888;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 8vw, 90px);
+            color: white;
+            margin-bottom: 15px;
+
+            text-shadow:
+                0 0 10px #00ff66,
+                0 0 30px rgba(0, 255, 100, 0.4);
+        }
+
+        .hero h1 span {
+            color: #00ff66;
+        }
+
+        .typing {
+            color: #00ff66;
+            font-size: clamp(18px, 3vw, 27px);
+            min-height: 35px;
+            margin-bottom: 25px;
+        }
+
+        .hero p {
+            color: #a6cbb1;
+            max-width: 700px;
+            margin: auto;
+            line-height: 1.8;
+        }
+
+        .buttons {
+            margin-top: 35px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 13px 25px;
+            border: 1px solid #00ff66;
+            color: #00ff66;
+            transition: 0.3s;
+            background: rgba(0, 255, 100, 0.04);
+        }
+
+        .btn:hover {
+            background: #00ff66;
+            color: #001b09;
+            box-shadow: 0 0 25px #00ff66;
+        }
+
+        .btn-filled {
+            background: #00ff66;
+            color: #001b09;
+            font-weight: bold;
+        }
+
+        /* =========================
+           SECTIONS
+        ========================= */
+
+        section {
+            padding: 100px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 55px;
+        }
+
+        .section-title h2 {
+            color: white;
+            font-size: 35px;
+        }
+
+        .section-title h2 span {
+            color: #00ff66;
+        }
+
+        .section-title p {
+            color: #648d70;
+            margin-top: 10px;
+        }
+
+        /* =========================
+           ABOUT
+        ========================= */
+
+        .about {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .terminal-box {
+            border: 1px solid #00ff66;
+            background: rgba(0, 20, 8, 0.75);
+            padding: 30px;
+            box-shadow: 0 0 25px rgba(0, 255, 100, 0.08);
+        }
+
+        .terminal-header {
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .terminal-header span {
+            color: #ff5555;
+        }
+
+        .terminal-box p {
+            line-height: 2;
+            color: #b8d9c0;
+        }
+
+        .green {
+            color: #00ff66;
+        }
+
+        /* =========================
+           SKILLS
+        ========================= */
+
+        .skills-grid {
+            max-width: 1100px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            border: 1px solid #154d28;
+            padding: 30px;
+            background: rgba(0, 20, 8, 0.7);
+            transition: 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-8px);
+            border-color: #00ff66;
+            box-shadow: 0 0 25px rgba(0, 255, 100, 0.15);
+        }
+
+        .skill-icon {
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .skill-card h3 {
+            color: #00ff66;
+            margin-bottom: 10px;
+        }
+
+        .skill-card p {
+            color: #83a88d;
+            line-height: 1.6;
+        }
+
+        /* =========================
+           PROJECTS
+        ========================= */
+
+        .projects {
+            max-width: 1100px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            padding: 30px;
+            border: 1px solid #154d28;
+            background: rgba(0, 15, 6, 0.85);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #00ff66;
+            transform: translateX(-100%);
+            transition: 0.5s;
+        }
+
+        .project-card:hover::before {
+            transform: translateX(0);
+        }
+
+        .project-card h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .project-card p {
+            color: #799b82;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            display: inline-block;
+            border: 1px solid #246b38;
+            padding: 5px 10px;
+            margin: 3px;
+            color: #00ff66;
+            font-size: 12px;
+        }
+
+        /* =========================
+           INTEREST
+        ========================= */
+
+        .interest-box {
+            max-width: 900px;
+            margin: auto;
+            text-align: center;
+            padding: 50px 30px;
+
+            border: 1px solid #00ff66;
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(0, 255, 100, 0.08),
+                    rgba(0, 0, 0, 0.5)
+                );
+        }
+
+        .interest-box h2 {
+            color: #00ff66;
+            margin-bottom: 20px;
+        }
+
+        .interest-box p {
+            color: #a1c2aa;
+            line-height: 1.8;
+        }
+
+        /* =========================
+           CONTACT
+        ========================= */
+
+        .contact {
+            max-width: 800px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            padding: 12px 20px;
+            border: 1px solid #154d28;
+            color: #00ff66;
+        }
+
+        .contact-item:hover {
+            border-color: #00ff66;
+            box-shadow: 0 0 15px rgba(0, 255, 100, 0.2);
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            border-top: 1px solid #123d21;
+            text-align: center;
+            padding: 30px;
+            color: #54745d;
+        }
+
+        footer span {
+            color: #00ff66;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            nav {
+                padding: 15px 5%;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            section {
+                padding: 75px 5%;
+            }
+
+            .hero {
+                padding: 100px 5% 50px;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- MATRIX BACKGROUND -->
+    <canvas id="matrix"></canvas>
+
+
+    <!-- NAVIGATION -->
+    <nav>
+
+        <div class="logo">
+            MAHESH<span>_</span>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="#home">./home</a></li>
+            <li><a href="#about">./about</a></li>
+            <li><a href="#skills">./skills</a></li>
+            <li><a href="#projects">./projects</a></li>
+            <li><a href="#contact">./contact</a></li>
+        </ul>
+
+    </nav>
+
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <div class="terminal">
+                whoami
+            </div>
+
+            <h1>
+                Hi, I'm <span>Mahesh</span>
+            </h1>
+
+            <div class="typing" id="typing"></div>
+
+            <p>
+                Computer Science student at Jain Institute of Technology,
+                Davangere. Currently exploring Data Structures & Algorithms,
+                programming, web development and cybersecurity.
+            </p>
+
+            <div class="buttons">
+
+                <a href="#about" class="btn btn-filled">
+                    Explore My Profile
+                </a>
+
+                <a href="#contact" class="btn">
+                    Contact Me
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+    <section id="about">
+
+        <div class="section-title">
+
+            <h2>
+                <span>01.</span> About Me
+            </h2>
+
+            <p>cat /home/mahesh/about.txt</p>
+
+        </div>
+
+
+        <div class="about">
+
+            <div class="terminal-box">
+
+                <div class="terminal-header">
+                    <span>●</span>
+                    <span>●</span>
+                    <span>●</span>
+                    &nbsp; mahesh@cyber:~$
+                </div>
+
+                <p>
+                    <span class="green">Mahesh</span> is a student
+                    at <span class="green">Jain Institute of Technology,
+                    Davangere</span>.
+                </p>
+
+                <br>
+
+                <p>
+                    I am currently learning
+                    <span class="green">DSA with C++</span>
+                    and building my programming fundamentals.
+                </p>
+
+                <br>
+
+                <p>
+                    I also have basic knowledge of
+                    <span class="green">Python</span>,
+                    <span class="green">Web Development</span>
+                    and software development.
+                </p>
+
+                <br>
+
+                <p>
+                    My biggest technical interest is
+                    <span class="green">Ethical Hacking &
+                    Cybersecurity</span>.
+                </p>
+
+                <br>
+
+                <p>
+                    <span class="green">Mission:</span>
+                    Learn. Build. Secure. Repeat.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SKILLS -->
+    <section id="skills">
+
+        <div class="section-title">
+
+            <h2>
+                <span>02.</span> Skills
+            </h2>
+
+            <p>./show-skills --all</p>
+
+        </div>
+
+
+        <div class="skills-grid">
+
+            <div class="skill-card">
+
+                <div class="skill-icon">⚡</div>
+
+                <h3>C++</h3>
+
+                <p>
+                    Currently learning Data Structures,
+                    Algorithms and problem solving with C++.
+                </p>
+
+            </div>
+
+
+            <div class="skill-card">
+
+                <div class="skill-icon">🐍</div>
+
+                <h3>Python</h3>
+
+                <p>
+                    Basic Python programming knowledge
+                    with an interest in using Python for
+                    automation and security.
+                </p>
+
+            </div>
+
+
+            <div class="skill-card">
+
+                <div class="skill-icon">🌐</div>
+
+                <h3>Web Development</h3>
+
+                <p>
+                    Knowledge of HTML, CSS and JavaScript
+                    with an interest in building modern websites.
+                </p>
+
+            </div>
+
+
+            <div class="skill-card">
+
+                <div class="skill-icon">🛡️</div>
+
+                <h3>Cybersecurity</h3>
+
+                <p>
+                    Strong interest in ethical hacking,
+                    web security, networking and defensive
+                    cybersecurity.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PROJECTS -->
+    <section id="projects">
+
+        <div class="section-title">
+
+            <h2>
+                <span>03.</span> Projects
+            </h2>
+
+            <p>./ls -la ~/projects</p>
+
+        </div>
+
+
+        <div class="projects">
+
+            <div class="project-card">
+
+                <h3>DSA Practice</h3>
+
+                <p>
+                    Solving programming problems and
+                    practicing Data Structures and Algorithms
+                    using C++.
+                </p>
+
+                <span class="tag">C++</span>
+                <span class="tag">DSA</span>
+                <span class="tag">Algorithms</span>
+
+            </div>
+
+
+            <div class="project-card">
+
+                <h3>Web Projects</h3>
+
+                <p>
+                    Building websites to improve my
+                    frontend development and understand
+                    how web applications work.
+                </p>
+
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JavaScript</span>
+
+            </div>
+
+
+            <div class="project-card">
+
+                <h3>Cybersecurity Lab</h3>
+
+                <p>
+                    Learning cybersecurity concepts through
+                    legal and controlled labs, CTFs and
+                    security experimentation.
+                </p>
+
+                <span class="tag">Cybersecurity</span>
+                <span class="tag">CTF</span>
+                <span class="tag">Ethical Hacking</span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CYBERSECURITY INTEREST -->
+    <section>
+
+        <div class="interest-box">
+
+            <h2>ACCESSING THE CYBER WORLD...</h2>
+
+            <p>
+                My goal is to develop strong programming,
+                networking and cybersecurity fundamentals
+                and eventually become a skilled
+                cybersecurity professional.
+            </p>
+
+            <br>
+
+            <p class="green">
+                [ STATUS: LEARNING MODE ACTIVE ]
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+    <section id="contact">
+
+        <div class="section-title">
+
+            <h2>
+                <span>04.</span> Contact
+            </h2>
+
+            <p>./connect-with-mahesh</p>
+
+        </div>
+
+
+        <div class="contact">
+
+            <p>
+                Want to connect, collaborate or discuss
+                technology and cybersecurity?
+            </p>
+
+            <div class="contact-links">
+
+                <!-- Replace these links with your actual profiles -->
+
+                <a href="#" class="contact-item">
+                    GitHub
+                </a>
+
+                <a href="#" class="contact-item">
+                    LinkedIn
+                </a>
+
+                <a href="mailto:your-email@example.com"
+                   class="contact-item">
+                    Email
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <p>
+            &lt;/&gt; Built by
+            <span>Mahesh</span>
+            | 2026
+        </p>
+
+        <br>
+
+        <p>
+            Think like a hacker.
+            Build like an engineer.
+            <span>Secure like a professional.</span>
+        </p>
+
+    </footer>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+        /* =========================
+           TYPING EFFECT
+        ========================= */
+
+        const texts = [
+            "Aspiring Ethical Hacker",
+            "C++ & DSA Learner",
+            "Python Beginner",
+            "Web Developer",
+            "Cybersecurity Enthusiast"
+        ];
+
+        let textIndex = 0;
+        let charIndex = 0;
+        let deleting = false;
+
+        const typingElement =
+            document.getElementById("typing");
+
+        function typeEffect() {
+
+            const currentText = texts[textIndex];
+
+            if (!deleting) {
+
+                typingElement.textContent =
+                    currentText.substring(0, charIndex + 1);
+
+                charIndex++;
+
+                if (charIndex === currentText.length) {
+
+                    deleting = true;
+
+                    setTimeout(typeEffect, 1500);
+                    return;
+                }
+
+            } else {
+
+                typingElement.textContent =
+                    currentText.substring(0, charIndex - 1);
+
+                charIndex--;
+
+                if (charIndex === 0) {
+
+                    deleting = false;
+
+                    textIndex++;
+
+                    if (textIndex === texts.length) {
+                        textIndex = 0;
+                    }
+                }
+            }
+
+            setTimeout(
+                typeEffect,
+                deleting ? 45 : 90
+            );
+        }
+
+        typeEffect();
+
+
+        /* =========================
+           MATRIX EFFECT
+        ========================= */
+
+        const canvas =
+            document.getElementById("matrix");
+
+        const ctx =
+            canvas.getContext("2d");
+
+        let width;
+        let height;
+        let columns;
+        let drops;
+
+        function resizeCanvas() {
+
+            width = canvas.width =
+                window.innerWidth;
+
+            height = canvas.height =
+                window.innerHeight;
+
+            columns =
+                Math.floor(width / 18);
+
+            drops =
+                Array(columns).fill(1);
+        }
+
+        resizeCanvas();
+
+        window.addEventListener(
+            "resize",
+            resizeCanvas
+        );
+
+        const characters =
+            "01ABCDEFGHIJKLMNOPQRSTUVWXYZ#$@%&<>/";
+
+        function matrixEffect() {
+
+            ctx.fillStyle =
+                "rgba(0, 5, 2, 0.08)";
+
+            ctx.fillRect(
+                0,
+                0,
+                width,
+                height
+            );
+
+            ctx.fillStyle = "#00ff66";
+
+            ctx.font = "15px monospace";
+
+            for (
+                let i = 0;
+                i < drops.length;
+                i++
+            ) {
+
+                const character =
+                    characters[
+                        Math.floor(
+                            Math.random() *
+                            characters.length
+                        )
+                    ];
+
+                ctx.fillText(
+                    character,
+                    i * 18,
+                    drops[i] * 18
+                );
+
+                if (
+                    drops[i] * 18 > height &&
+                    Math.random() > 0.975
+                ) {
+                    drops[i] = 0;
+                }
+
+                drops[i]++;
+            }
+        }
+
+        setInterval(
+            matrixEffect,
+            50
+        );
+
+    </script>
+
+</body>
+</html>
