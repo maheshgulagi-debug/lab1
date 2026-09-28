@@ -7,4 +7,6 @@
 "This is my very first Git experiment."
 "This is my very first Git experiment."
 "This is my very first Git experiment."
-"This is my very first Git experiment."
+"Good job"
+"Good job"
+"Good job"
