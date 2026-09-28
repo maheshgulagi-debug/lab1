@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="description"
-          content="Mahesh - Computer Science student, programmer and aspiring ethical hacker.">
+          content="Mahesh - DSA, C++, Python, Web Development and Cybersecurity Portfolio">
 
-    <title>Mahesh | Ethical Hacker & Developer</title>
+    <title>Mahesh | The Dragon Code</title>
 
     <style>
-        /* =========================
+        /* =====================================================
            RESET
-        ========================= */
+        ===================================================== */
 
         * {
             margin: 0;
@@ -25,95 +25,288 @@
         }
 
         body {
-            background: #020805;
-            color: #d7ffe5;
-            font-family: "Courier New", monospace;
+            background: #080504;
+            color: #ead9b5;
+            font-family: Georgia, "Times New Roman", serif;
             overflow-x: hidden;
         }
 
         a {
-            color: inherit;
             text-decoration: none;
+            color: inherit;
         }
 
-        /* =========================
-           MATRIX BACKGROUND
-        ========================= */
-
-        #matrix {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            opacity: 0.16;
-        }
+        /* =====================================================
+           BACKGROUND
+        ===================================================== */
 
         body::before {
             content: "";
             position: fixed;
             inset: 0;
+
             background:
-                radial-gradient(circle at center,
-                    rgba(0, 255, 100, 0.08),
-                    transparent 55%);
+                radial-gradient(
+                    circle at 50% 30%,
+                    rgba(128, 0, 0, 0.20),
+                    transparent 40%
+                ),
+                linear-gradient(
+                    rgba(0, 0, 0, 0.35),
+                    rgba(0, 0, 0, 0.85)
+                );
+
             pointer-events: none;
+            z-index: -3;
+        }
+
+        /* Mountain / castle silhouette */
+
+        .mountains {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+
+            width: 100%;
+            height: 35vh;
+
+            z-index: -2;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    transparent 35%,
+                    #110c09 35%,
+                    #110c09 48%,
+                    transparent 48%
+                ),
+                linear-gradient(
+                    45deg,
+                    transparent 35%,
+                    #0e0a08 35%,
+                    #0e0a08 50%,
+                    transparent 50%
+                );
+
+            opacity: 0.8;
+        }
+
+        /* =====================================================
+           FIRE PARTICLES
+        ===================================================== */
+
+        .fire {
+            position: fixed;
+            bottom: -20px;
+            width: 5px;
+            height: 5px;
+
+            background: #ff6a00;
+            border-radius: 50%;
+
+            box-shadow:
+                0 0 8px #ff6a00,
+                0 0 20px #ff2200;
+
+            animation: rise 5s linear infinite;
+
+            opacity: 0.7;
             z-index: -1;
         }
 
-        /* =========================
+        @keyframes rise {
+
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-100vh) scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* =====================================================
+           DRAGON
+        ===================================================== */
+
+        .dragon {
+            position: fixed;
+            top: 15%;
+            right: -250px;
+
+            width: 220px;
+            height: 100px;
+
+            opacity: 0.12;
+
+            animation: fly 25s linear infinite;
+
+            z-index: -1;
+        }
+
+        .dragon-body {
+            position: absolute;
+            width: 160px;
+            height: 55px;
+
+            background: #000;
+
+            border-radius: 60% 40% 50% 50%;
+        }
+
+        .dragon-wing {
+            position: absolute;
+
+            width: 100px;
+            height: 80px;
+
+            background: #000;
+
+            clip-path: polygon(
+                0 100%,
+                25% 0,
+                55% 50%,
+                100% 10%,
+                75% 100%
+            );
+
+            top: -50px;
+        }
+
+        .dragon-wing.one {
+            left: 25px;
+            transform: rotate(-15deg);
+        }
+
+        .dragon-wing.two {
+            left: 85px;
+            transform: scaleX(-1) rotate(-15deg);
+        }
+
+        .dragon-head {
+            position: absolute;
+
+            width: 55px;
+            height: 35px;
+
+            background: #000;
+
+            right: 0;
+            top: 8px;
+
+            border-radius: 50%;
+        }
+
+        .dragon-tail {
+            position: absolute;
+
+            width: 100px;
+            height: 20px;
+
+            background: #000;
+
+            left: -75px;
+            top: 20px;
+
+            transform: rotate(15deg);
+
+            border-radius: 100%;
+        }
+
+        @keyframes fly {
+
+            0% {
+                transform: translateX(0) translateY(0);
+            }
+
+            25% {
+                transform: translateX(-30vw) translateY(50px);
+            }
+
+            50% {
+                transform: translateX(-60vw) translateY(-30px);
+            }
+
+            75% {
+                transform: translateX(-90vw) translateY(50px);
+            }
+
+            100% {
+                transform: translateX(-130vw) translateY(-20px);
+            }
+        }
+
+        /* =====================================================
            NAVBAR
-        ========================= */
+        ===================================================== */
 
         nav {
             position: fixed;
             top: 0;
+            left: 0;
+
             width: 100%;
-            z-index: 1000;
+
+            padding: 18px 8%;
 
             display: flex;
             justify-content: space-between;
             align-items: center;
 
-            padding: 18px 8%;
+            background: rgba(5, 3, 2, 0.90);
 
-            background: rgba(0, 10, 5, 0.88);
-            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #754b22;
 
-            border-bottom: 1px solid #00ff66;
+            backdrop-filter: blur(8px);
+
+            z-index: 1000;
         }
 
         .logo {
-            color: #00ff66;
-            font-size: 22px;
+            font-size: 24px;
             font-weight: bold;
-            text-shadow: 0 0 12px #00ff66;
+
+            color: #d6a84a;
+
+            letter-spacing: 3px;
+
+            text-shadow:
+                0 0 10px #8b2a13;
         }
 
         .logo span {
-            color: white;
+            color: #8b1a12;
         }
 
         .nav-links {
             display: flex;
             gap: 25px;
+
             list-style: none;
         }
 
         .nav-links a {
-            color: #b8ffc9;
+            color: #c7b48c;
+
             transition: 0.3s;
         }
 
         .nav-links a:hover {
-            color: #00ff66;
-            text-shadow: 0 0 10px #00ff66;
+            color: #e5b94e;
+
+            text-shadow:
+                0 0 10px #b13c18;
         }
 
-        /* =========================
+        /* =====================================================
            HERO
-        ========================= */
+        ===================================================== */
 
         .hero {
             min-height: 100vh;
@@ -122,316 +315,484 @@
             justify-content: center;
             align-items: center;
 
-            padding: 100px 8% 50px;
+            text-align: center;
+
+            padding: 120px 8% 70px;
+
+            position: relative;
         }
 
         .hero-content {
-            max-width: 900px;
-            text-align: center;
+            max-width: 950px;
         }
 
-        .terminal {
-            color: #00ff66;
-            font-size: 16px;
-            margin-bottom: 20px;
+        .crest {
+            font-size: 75px;
+
+            color: #9e2717;
+
+            text-shadow:
+                0 0 10px #ff4b19,
+                0 0 40px #6d1208;
+
+            animation: dragonPulse 3s infinite;
         }
 
-        .terminal::before {
-            content: "root@mahesh:~$ ";
-            color: #888;
+        @keyframes dragonPulse {
+
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.08);
+            }
+        }
+
+        .subtitle {
+            color: #a68a5d;
+
+            letter-spacing: 6px;
+
+            margin: 15px 0;
         }
 
         .hero h1 {
-            font-size: clamp(45px, 8vw, 90px);
-            color: white;
-            margin-bottom: 15px;
+            font-size: clamp(48px, 9vw, 100px);
+
+            color: #e7c36a;
+
+            text-transform: uppercase;
+
+            letter-spacing: 5px;
 
             text-shadow:
-                0 0 10px #00ff66,
-                0 0 30px rgba(0, 255, 100, 0.4);
+                0 3px 0 #3d210c,
+                0 0 20px rgba(221, 138, 38, 0.5);
         }
 
         .hero h1 span {
-            color: #00ff66;
+            color: #9e2416;
         }
 
         .typing {
-            color: #00ff66;
-            font-size: clamp(18px, 3vw, 27px);
+            margin-top: 20px;
+
             min-height: 35px;
-            margin-bottom: 25px;
+
+            color: #d36a2e;
+
+            font-size: 23px;
+
+            font-family: "Courier New", monospace;
         }
 
         .hero p {
-            color: #a6cbb1;
-            max-width: 700px;
-            margin: auto;
-            line-height: 1.8;
+            max-width: 750px;
+
+            margin: 25px auto;
+
+            color: #b7a98c;
+
+            line-height: 1.9;
+
+            font-size: 17px;
         }
 
         .buttons {
-            margin-top: 35px;
             display: flex;
+
             justify-content: center;
+
             gap: 15px;
+
             flex-wrap: wrap;
+
+            margin-top: 35px;
         }
 
         .btn {
-            padding: 13px 25px;
-            border: 1px solid #00ff66;
-            color: #00ff66;
+            padding: 13px 27px;
+
+            border: 1px solid #9a692c;
+
+            color: #dcb968;
+
+            background: rgba(80, 35, 10, 0.2);
+
             transition: 0.3s;
-            background: rgba(0, 255, 100, 0.04);
+
+            font-family: "Courier New", monospace;
         }
 
         .btn:hover {
-            background: #00ff66;
-            color: #001b09;
-            box-shadow: 0 0 25px #00ff66;
+            color: #fff;
+
+            background: #7d2516;
+
+            border-color: #d48b36;
+
+            box-shadow:
+                0 0 25px rgba(179, 54, 19, 0.7);
         }
 
-        .btn-filled {
-            background: #00ff66;
-            color: #001b09;
-            font-weight: bold;
+        .btn-main {
+            background: #8b2416;
+
+            color: #fff;
+
+            border-color: #c47b32;
         }
 
-        /* =========================
+        /* =====================================================
            SECTIONS
-        ========================= */
+        ===================================================== */
 
         section {
-            padding: 100px 8%;
+            padding: 110px 8%;
         }
 
         .section-title {
             text-align: center;
+
             margin-bottom: 55px;
         }
 
         .section-title h2 {
-            color: white;
-            font-size: 35px;
+            font-size: 40px;
+
+            color: #d9b75d;
+
+            text-transform: uppercase;
+
+            letter-spacing: 3px;
         }
 
         .section-title h2 span {
-            color: #00ff66;
+            color: #8d2416;
         }
 
         .section-title p {
-            color: #648d70;
+            color: #77684e;
+
             margin-top: 10px;
+
+            font-family: "Courier New", monospace;
         }
 
-        /* =========================
+        /* =====================================================
            ABOUT
-        ========================= */
+        ===================================================== */
 
         .about {
             max-width: 1000px;
+
             margin: auto;
         }
 
-        .terminal-box {
-            border: 1px solid #00ff66;
-            background: rgba(0, 20, 8, 0.75);
-            padding: 30px;
-            box-shadow: 0 0 25px rgba(0, 255, 100, 0.08);
+        .scroll-box {
+            position: relative;
+
+            padding: 40px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(60, 28, 10, 0.55),
+                    rgba(5, 4, 3, 0.85)
+                );
+
+            border: 1px solid #67471e;
+
+            box-shadow:
+                0 0 35px rgba(0, 0, 0, 0.7);
         }
 
-        .terminal-header {
-            color: #555;
-            margin-bottom: 20px;
+        .scroll-box::before {
+            content: "✦";
+
+            position: absolute;
+
+            top: -20px;
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            color: #c7983c;
+
+            background: #080504;
+
+            padding: 0 15px;
+
+            font-size: 25px;
         }
 
-        .terminal-header span {
-            color: #ff5555;
-        }
-
-        .terminal-box p {
+        .scroll-box p {
             line-height: 2;
-            color: #b8d9c0;
+
+            color: #b9aa8b;
+
+            font-size: 17px;
         }
 
-        .green {
-            color: #00ff66;
+        .gold {
+            color: #e0bb58;
         }
 
-        /* =========================
+        .red {
+            color: #a72b19;
+        }
+
+        /* =====================================================
            SKILLS
-        ========================= */
+        ===================================================== */
 
         .skills-grid {
             max-width: 1100px;
+
             margin: auto;
 
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-            gap: 20px;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(230px, 1fr));
+
+            gap: 22px;
         }
 
         .skill-card {
-            border: 1px solid #154d28;
             padding: 30px;
-            background: rgba(0, 20, 8, 0.7);
-            transition: 0.3s;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(47, 25, 12, 0.8),
+                    rgba(9, 6, 4, 0.9)
+                );
+
+            border: 1px solid #4f371b;
+
+            transition: 0.4s;
+
+            position: relative;
         }
 
         .skill-card:hover {
             transform: translateY(-8px);
-            border-color: #00ff66;
-            box-shadow: 0 0 25px rgba(0, 255, 100, 0.15);
+
+            border-color: #a8752d;
+
+            box-shadow:
+                0 10px 35px rgba(122, 34, 15, 0.3);
         }
 
         .skill-icon {
-            font-size: 35px;
+            font-size: 40px;
+
             margin-bottom: 15px;
         }
 
         .skill-card h3 {
-            color: #00ff66;
-            margin-bottom: 10px;
+            color: #d7b558;
+
+            margin-bottom: 12px;
         }
 
         .skill-card p {
-            color: #83a88d;
-            line-height: 1.6;
+            color: #8e816b;
+
+            line-height: 1.7;
         }
 
-        /* =========================
+        /* =====================================================
            PROJECTS
-        ========================= */
+        ===================================================== */
 
         .projects {
             max-width: 1100px;
+
             margin: auto;
 
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(280px, 1fr));
+
             gap: 25px;
         }
 
         .project-card {
             padding: 30px;
-            border: 1px solid #154d28;
-            background: rgba(0, 15, 6, 0.85);
-            position: relative;
-            overflow: hidden;
+
+            border: 1px solid #4f361b;
+
+            background:
+                rgba(12, 8, 5, 0.88);
+
+            transition: 0.4s;
         }
 
-        .project-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: #00ff66;
-            transform: translateX(-100%);
-            transition: 0.5s;
-        }
+        .project-card:hover {
+            border-color: #9a6526;
 
-        .project-card:hover::before {
-            transform: translateX(0);
+            transform: translateY(-7px);
         }
 
         .project-card h3 {
-            color: white;
+            color: #e0bd62;
+
             margin-bottom: 15px;
         }
 
         .project-card p {
-            color: #799b82;
+            color: #8d806b;
+
             line-height: 1.7;
+
             margin-bottom: 20px;
         }
 
         .tag {
             display: inline-block;
-            border: 1px solid #246b38;
-            padding: 5px 10px;
+
+            padding: 5px 9px;
+
             margin: 3px;
-            color: #00ff66;
+
+            border: 1px solid #5b3d1b;
+
+            color: #bd9140;
+
+            font-family: "Courier New", monospace;
+
             font-size: 12px;
         }
 
-        /* =========================
-           INTEREST
-        ========================= */
+        /* =====================================================
+           CYBERSECURITY
+        ===================================================== */
 
-        .interest-box {
+        .cyber {
             max-width: 900px;
-            margin: auto;
-            text-align: center;
-            padding: 50px 30px;
 
-            border: 1px solid #00ff66;
+            margin: auto;
+
+            text-align: center;
+
+            padding: 55px 30px;
+
+            border: 1px solid #7b2818;
+
             background:
-                linear-gradient(
-                    135deg,
-                    rgba(0, 255, 100, 0.08),
-                    rgba(0, 0, 0, 0.5)
+                radial-gradient(
+                    circle,
+                    rgba(118, 30, 12, 0.22),
+                    rgba(5, 3, 2, 0.9)
                 );
+
+            box-shadow:
+                inset 0 0 50px rgba(112, 27, 12, 0.1);
         }
 
-        .interest-box h2 {
-            color: #00ff66;
+        .cyber h2 {
+            color: #d19e43;
+
+            font-size: 32px;
+
             margin-bottom: 20px;
         }
 
-        .interest-box p {
-            color: #a1c2aa;
-            line-height: 1.8;
+        .cyber p {
+            color: #a99a7d;
+
+            line-height: 1.9;
         }
 
-        /* =========================
+        .terminal {
+            margin-top: 25px;
+
+            padding: 15px;
+
+            background: #030303;
+
+            color: #cf682c;
+
+            border: 1px solid #332313;
+
+            font-family: "Courier New", monospace;
+
+            text-align: left;
+        }
+
+        /* =====================================================
            CONTACT
-        ========================= */
+        ===================================================== */
 
         .contact {
             max-width: 800px;
+
             margin: auto;
+
             text-align: center;
+        }
+
+        .contact p {
+            color: #96876e;
+
+            line-height: 1.8;
         }
 
         .contact-links {
             display: flex;
+
             justify-content: center;
-            gap: 15px;
+
             flex-wrap: wrap;
+
+            gap: 15px;
+
             margin-top: 30px;
         }
 
         .contact-item {
-            padding: 12px 20px;
-            border: 1px solid #154d28;
-            color: #00ff66;
+            padding: 13px 22px;
+
+            border: 1px solid #64451e;
+
+            color: #d2ad58;
+
+            transition: 0.3s;
         }
 
         .contact-item:hover {
-            border-color: #00ff66;
-            box-shadow: 0 0 15px rgba(0, 255, 100, 0.2);
+            background: #702116;
+
+            color: white;
+
+            border-color: #c2782c;
         }
 
-        /* =========================
+        /* =====================================================
            FOOTER
-        ========================= */
+        ===================================================== */
 
         footer {
-            border-top: 1px solid #123d21;
+            padding: 35px;
+
             text-align: center;
-            padding: 30px;
-            color: #54745d;
+
+            border-top: 1px solid #392817;
+
+            color: #625640;
         }
 
         footer span {
-            color: #00ff66;
+            color: #a77b32;
         }
 
-        /* =========================
+        /* =====================================================
            RESPONSIVE
-        ========================= */
+        ===================================================== */
 
         @media (max-width: 700px) {
 
@@ -444,73 +805,149 @@
             }
 
             section {
-                padding: 75px 5%;
+                padding: 80px 5%;
             }
 
             .hero {
-                padding: 100px 5% 50px;
+                padding: 110px 5% 70px;
             }
 
             .hero h1 {
                 font-size: 48px;
             }
+
+            .crest {
+                font-size: 55px;
+            }
+
+            .scroll-box {
+                padding: 25px;
+            }
         }
     </style>
 </head>
 
+
 <body>
 
-    <!-- MATRIX BACKGROUND -->
-    <canvas id="matrix"></canvas>
+    <!-- =====================================================
+         FIRE PARTICLES
+    ====================================================== -->
+
+    <div class="fire" style="left:5%; animation-delay:0s;"></div>
+    <div class="fire" style="left:12%; animation-delay:2s;"></div>
+    <div class="fire" style="left:20%; animation-delay:1s;"></div>
+    <div class="fire" style="left:30%; animation-delay:3s;"></div>
+    <div class="fire" style="left:40%; animation-delay:1.5s;"></div>
+    <div class="fire" style="left:50%; animation-delay:4s;"></div>
+    <div class="fire" style="left:60%; animation-delay:2.5s;"></div>
+    <div class="fire" style="left:70%; animation-delay:1s;"></div>
+    <div class="fire" style="left:80%; animation-delay:3.5s;"></div>
+    <div class="fire" style="left:90%; animation-delay:2s;"></div>
 
 
-    <!-- NAVIGATION -->
+    <!-- Mountains -->
+
+    <div class="mountains"></div>
+
+
+    <!-- =====================================================
+         FLYING DRAGON
+    ====================================================== -->
+
+    <div class="dragon">
+
+        <div class="dragon-body"></div>
+
+        <div class="dragon-wing one"></div>
+
+        <div class="dragon-wing two"></div>
+
+        <div class="dragon-head"></div>
+
+        <div class="dragon-tail"></div>
+
+    </div>
+
+
+    <!-- =====================================================
+         NAVIGATION
+    ====================================================== -->
+
     <nav>
 
         <div class="logo">
-            MAHESH<span>_</span>
+            MAHESH<span>⚔</span>
         </div>
 
         <ul class="nav-links">
-            <li><a href="#home">./home</a></li>
-            <li><a href="#about">./about</a></li>
-            <li><a href="#skills">./skills</a></li>
-            <li><a href="#projects">./projects</a></li>
-            <li><a href="#contact">./contact</a></li>
+
+            <li>
+                <a href="#home">Home</a>
+            </li>
+
+            <li>
+                <a href="#about">About</a>
+            </li>
+
+            <li>
+                <a href="#skills">Skills</a>
+            </li>
+
+            <li>
+                <a href="#projects">Projects</a>
+            </li>
+
+            <li>
+                <a href="#contact">Contact</a>
+            </li>
+
         </ul>
 
     </nav>
 
 
-    <!-- HERO -->
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
     <section class="hero" id="home">
 
         <div class="hero-content">
 
-            <div class="terminal">
-                whoami
+            <div class="crest">
+                🐉
+            </div>
+
+            <div class="subtitle">
+                THE CODE OF THE DRAGON
             </div>
 
             <h1>
-                Hi, I'm <span>Mahesh</span>
+                MAHESH
+                <span>_</span>
             </h1>
 
             <div class="typing" id="typing"></div>
 
             <p>
-                Computer Science student at Jain Institute of Technology,
-                Davangere. Currently exploring Data Structures & Algorithms,
-                programming, web development and cybersecurity.
+                Computer Science student at
+                <strong>Jain Institute of Technology,
+                Davangere</strong>.
+
+                Learning C++, Data Structures &
+                Algorithms, Python, Web Development
+                and Cybersecurity.
             </p>
 
             <div class="buttons">
 
-                <a href="#about" class="btn btn-filled">
-                    Explore My Profile
+                <a href="#about" class="btn btn-main">
+                    ENTER MY REALM
                 </a>
 
                 <a href="#contact" class="btn">
-                    Contact Me
+                    CONTACT ME
                 </a>
 
             </div>
@@ -520,67 +957,75 @@
     </section>
 
 
-    <!-- ABOUT -->
+    <!-- =====================================================
+         ABOUT
+    ====================================================== -->
+
     <section id="about">
 
         <div class="section-title">
 
             <h2>
-                <span>01.</span> About Me
+                <span>01.</span>
+                About The Hacker
             </h2>
 
-            <p>cat /home/mahesh/about.txt</p>
+            <p>
+                cat /realm/mahesh.txt
+            </p>
 
         </div>
 
 
         <div class="about">
 
-            <div class="terminal-box">
-
-                <div class="terminal-header">
-                    <span>●</span>
-                    <span>●</span>
-                    <span>●</span>
-                    &nbsp; mahesh@cyber:~$
-                </div>
+            <div class="scroll-box">
 
                 <p>
-                    <span class="green">Mahesh</span> is a student
-                    at <span class="green">Jain Institute of Technology,
-                    Davangere</span>.
+                    I am
+                    <span class="gold">Mahesh</span>,
+                    a student at
+                    <span class="gold">
+                        Jain Institute of Technology,
+                        Davangere
+                    </span>.
                 </p>
 
                 <br>
 
                 <p>
                     I am currently learning
-                    <span class="green">DSA with C++</span>
-                    and building my programming fundamentals.
+                    <span class="gold">
+                        Data Structures and Algorithms
+                    </span>
+                    using
+                    <span class="gold">C++</span>
+                    and improving my problem-solving skills.
                 </p>
 
                 <br>
 
                 <p>
-                    I also have basic knowledge of
-                    <span class="green">Python</span>,
-                    <span class="green">Web Development</span>
-                    and software development.
+                    I have basic knowledge of
+                    <span class="gold">Python</span>,
+                    web development and software development.
                 </p>
 
                 <br>
 
                 <p>
-                    My biggest technical interest is
-                    <span class="green">Ethical Hacking &
-                    Cybersecurity</span>.
+                    My strongest technical interest is
+                    <span class="red">
+                        Ethical Hacking and Cybersecurity
+                    </span>.
                 </p>
 
                 <br>
 
                 <p>
-                    <span class="green">Mission:</span>
-                    Learn. Build. Secure. Repeat.
+                    I want to understand how systems,
+                    networks and applications work and
+                    learn how to secure them responsibly.
                 </p>
 
             </div>
@@ -590,16 +1035,22 @@
     </section>
 
 
-    <!-- SKILLS -->
+    <!-- =====================================================
+         SKILLS
+    ====================================================== -->
+
     <section id="skills">
 
         <div class="section-title">
 
             <h2>
-                <span>02.</span> Skills
+                <span>02.</span>
+                My Weapons
             </h2>
 
-            <p>./show-skills --all</p>
+            <p>
+                ./show-skills --all
+            </p>
 
         </div>
 
@@ -608,13 +1059,16 @@
 
             <div class="skill-card">
 
-                <div class="skill-icon">⚡</div>
+                <div class="skill-icon">
+                    ⚔️
+                </div>
 
-                <h3>C++</h3>
+                <h3>C++ & DSA</h3>
 
                 <p>
                     Currently learning Data Structures,
-                    Algorithms and problem solving with C++.
+                    Algorithms and competitive
+                    problem solving with C++.
                 </p>
 
             </div>
@@ -622,14 +1076,16 @@
 
             <div class="skill-card">
 
-                <div class="skill-icon">🐍</div>
+                <div class="skill-icon">
+                    🐍
+                </div>
 
                 <h3>Python</h3>
 
                 <p>
-                    Basic Python programming knowledge
-                    with an interest in using Python for
-                    automation and security.
+                    Basic Python knowledge with
+                    interest in automation and
+                    cybersecurity applications.
                 </p>
 
             </div>
@@ -637,13 +1093,16 @@
 
             <div class="skill-card">
 
-                <div class="skill-icon">🌐</div>
+                <div class="skill-icon">
+                    🏰
+                </div>
 
                 <h3>Web Development</h3>
 
                 <p>
-                    Knowledge of HTML, CSS and JavaScript
-                    with an interest in building modern websites.
+                    HTML, CSS and JavaScript
+                    fundamentals and modern
+                    web development concepts.
                 </p>
 
             </div>
@@ -651,14 +1110,16 @@
 
             <div class="skill-card">
 
-                <div class="skill-icon">🛡️</div>
+                <div class="skill-icon">
+                    🐉
+                </div>
 
                 <h3>Cybersecurity</h3>
 
                 <p>
-                    Strong interest in ethical hacking,
-                    web security, networking and defensive
-                    cybersecurity.
+                    Learning ethical hacking,
+                    networking, web security,
+                    CTFs and defensive security.
                 </p>
 
             </div>
@@ -668,16 +1129,22 @@
     </section>
 
 
-    <!-- PROJECTS -->
+    <!-- =====================================================
+         PROJECTS
+    ====================================================== -->
+
     <section id="projects">
 
         <div class="section-title">
 
             <h2>
-                <span>03.</span> Projects
+                <span>03.</span>
+                My Quests
             </h2>
 
-            <p>./ls -la ~/projects</p>
+            <p>
+                ./ls -la ~/quests
+            </p>
 
         </div>
 
@@ -686,51 +1153,81 @@
 
             <div class="project-card">
 
-                <h3>DSA Practice</h3>
+                <h3>
+                    🗡️ DSA Quest
+                </h3>
 
                 <p>
-                    Solving programming problems and
-                    practicing Data Structures and Algorithms
-                    using C++.
+                    Practicing arrays, strings,
+                    linked lists, stacks, queues,
+                    trees and algorithms using C++.
                 </p>
 
-                <span class="tag">C++</span>
-                <span class="tag">DSA</span>
-                <span class="tag">Algorithms</span>
+                <span class="tag">
+                    C++
+                </span>
+
+                <span class="tag">
+                    DSA
+                </span>
+
+                <span class="tag">
+                    Algorithms
+                </span>
 
             </div>
 
 
             <div class="project-card">
 
-                <h3>Web Projects</h3>
+                <h3>
+                    🏰 Web Realm
+                </h3>
 
                 <p>
-                    Building websites to improve my
-                    frontend development and understand
-                    how web applications work.
+                    Creating websites and learning
+                    how frontend technologies work
+                    together to build web applications.
                 </p>
 
-                <span class="tag">HTML</span>
-                <span class="tag">CSS</span>
-                <span class="tag">JavaScript</span>
+                <span class="tag">
+                    HTML
+                </span>
+
+                <span class="tag">
+                    CSS
+                </span>
+
+                <span class="tag">
+                    JavaScript
+                </span>
 
             </div>
 
 
             <div class="project-card">
 
-                <h3>Cybersecurity Lab</h3>
+                <h3>
+                    🐉 Dragon Security Lab
+                </h3>
 
                 <p>
-                    Learning cybersecurity concepts through
-                    legal and controlled labs, CTFs and
-                    security experimentation.
+                    Exploring cybersecurity through
+                    legal labs, CTF challenges,
+                    networking and security concepts.
                 </p>
 
-                <span class="tag">Cybersecurity</span>
-                <span class="tag">CTF</span>
-                <span class="tag">Ethical Hacking</span>
+                <span class="tag">
+                    Cybersecurity
+                </span>
+
+                <span class="tag">
+                    CTF
+                </span>
+
+                <span class="tag">
+                    Ethical Hacking
+                </span>
 
             </div>
 
@@ -739,41 +1236,78 @@
     </section>
 
 
-    <!-- CYBERSECURITY INTEREST -->
+    <!-- =====================================================
+         CYBERSECURITY
+    ====================================================== -->
+
     <section>
 
-        <div class="interest-box">
+        <div class="cyber">
 
-            <h2>ACCESSING THE CYBER WORLD...</h2>
+            <h2>
+                🐉 THE DRAGON'S CODE
+            </h2>
 
             <p>
-                My goal is to develop strong programming,
-                networking and cybersecurity fundamentals
-                and eventually become a skilled
-                cybersecurity professional.
+                My goal is to become a strong software
+                and cybersecurity professional by combining
+                programming, problem solving and security
+                knowledge.
             </p>
 
-            <br>
+            <div class="terminal">
 
-            <p class="green">
-                [ STATUS: LEARNING MODE ACTIVE ]
-            </p>
+                <div>
+                    mahesh@dragon:~$ whoami
+                </div>
+
+                <div class="red">
+                    &gt; aspiring ethical hacker
+                </div>
+
+                <br>
+
+                <div>
+                    mahesh@dragon:~$ mission
+                </div>
+
+                <div class="gold">
+                    &gt; LEARN • BUILD • SECURE
+                </div>
+
+                <br>
+
+                <div>
+                    mahesh@dragon:~$ status
+                </div>
+
+                <div class="gold">
+                    &gt; [ TRAINING IN PROGRESS ]
+                </div>
+
+            </div>
 
         </div>
 
     </section>
 
 
-    <!-- CONTACT -->
+    <!-- =====================================================
+         CONTACT
+    ====================================================== -->
+
     <section id="contact">
 
         <div class="section-title">
 
             <h2>
-                <span>04.</span> Contact
+                <span>04.</span>
+                Send A Raven
             </h2>
 
-            <p>./connect-with-mahesh</p>
+            <p>
+                ./connect-with-mahesh
+            </p>
 
         </div>
 
@@ -781,19 +1315,26 @@
         <div class="contact">
 
             <p>
-                Want to connect, collaborate or discuss
-                technology and cybersecurity?
+                Interested in programming,
+                cybersecurity, web development
+                or collaboration?
             </p>
+
 
             <div class="contact-links">
 
-                <!-- Replace these links with your actual profiles -->
+                <!--
+                    Replace the # links with
+                    your actual social profiles.
+                -->
 
-                <a href="#" class="contact-item">
+                <a href="#"
+                   class="contact-item">
                     GitHub
                 </a>
 
-                <a href="#" class="contact-item">
+                <a href="#"
+                   class="contact-item">
                     LinkedIn
                 </a>
 
@@ -809,76 +1350,107 @@
     </section>
 
 
-    <!-- FOOTER -->
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
     <footer>
 
         <p>
-            &lt;/&gt; Built by
+            Forged in code by
             <span>Mahesh</span>
-            | 2026
+            © 2026
         </p>
 
         <br>
 
         <p>
-            Think like a hacker.
-            Build like an engineer.
-            <span>Secure like a professional.</span>
+            <span>
+                🐉 Learn. Build. Secure.
+            </span>
         </p>
 
     </footer>
 
 
-    <!-- =========================
+    <!-- =====================================================
          JAVASCRIPT
-    ========================= -->
+    ====================================================== -->
 
     <script>
 
-        /* =========================
+        /* =================================================
            TYPING EFFECT
-        ========================= */
+        ================================================= */
 
         const texts = [
+
             "Aspiring Ethical Hacker",
+
             "C++ & DSA Learner",
+
             "Python Beginner",
+
             "Web Developer",
+
             "Cybersecurity Enthusiast"
+
         ];
 
         let textIndex = 0;
+
         let charIndex = 0;
+
         let deleting = false;
 
-        const typingElement =
+        const typing =
             document.getElementById("typing");
+
 
         function typeEffect() {
 
-            const currentText = texts[textIndex];
+            const current =
+                texts[textIndex];
+
 
             if (!deleting) {
 
-                typingElement.textContent =
-                    currentText.substring(0, charIndex + 1);
+                typing.textContent =
+                    current.substring(
+                        0,
+                        charIndex + 1
+                    );
 
                 charIndex++;
 
-                if (charIndex === currentText.length) {
+
+                if (
+                    charIndex ===
+                    current.length
+                ) {
 
                     deleting = true;
 
-                    setTimeout(typeEffect, 1500);
+                    setTimeout(
+                        typeEffect,
+                        1600
+                    );
+
                     return;
                 }
 
-            } else {
+            }
 
-                typingElement.textContent =
-                    currentText.substring(0, charIndex - 1);
+            else {
+
+                typing.textContent =
+                    current.substring(
+                        0,
+                        charIndex - 1
+                    );
 
                 charIndex--;
+
 
                 if (charIndex === 0) {
 
@@ -886,111 +1458,71 @@
 
                     textIndex++;
 
-                    if (textIndex === texts.length) {
+                    if (
+                        textIndex ===
+                        texts.length
+                    ) {
                         textIndex = 0;
                     }
+
                 }
+
             }
 
+
             setTimeout(
+
                 typeEffect,
-                deleting ? 45 : 90
+
+                deleting
+                    ? 45
+                    : 90
+
             );
+
         }
+
 
         typeEffect();
 
 
-        /* =========================
-           MATRIX EFFECT
-        ========================= */
+        /* =================================================
+           RANDOM FIRE PARTICLES
+        ================================================= */
 
-        const canvas =
-            document.getElementById("matrix");
+        function createFire() {
 
-        const ctx =
-            canvas.getContext("2d");
+            const fire =
+                document.createElement("div");
 
-        let width;
-        let height;
-        let columns;
-        let drops;
+            fire.className = "fire";
 
-        function resizeCanvas() {
+            fire.style.left =
+                Math.random() * 100 + "%";
 
-            width = canvas.width =
-                window.innerWidth;
+            fire.style.animationDuration =
+                (3 + Math.random() * 5) + "s";
 
-            height = canvas.height =
-                window.innerHeight;
+            fire.style.width =
+                (3 + Math.random() * 5) + "px";
 
-            columns =
-                Math.floor(width / 18);
+            fire.style.height =
+                fire.style.width;
 
-            drops =
-                Array(columns).fill(1);
-        }
+            document.body.appendChild(fire);
 
-        resizeCanvas();
 
-        window.addEventListener(
-            "resize",
-            resizeCanvas
-        );
-
-        const characters =
-            "01ABCDEFGHIJKLMNOPQRSTUVWXYZ#$@%&<>/";
-
-        function matrixEffect() {
-
-            ctx.fillStyle =
-                "rgba(0, 5, 2, 0.08)";
-
-            ctx.fillRect(
-                0,
-                0,
-                width,
-                height
+            setTimeout(
+                () => fire.remove(),
+                8000
             );
 
-            ctx.fillStyle = "#00ff66";
-
-            ctx.font = "15px monospace";
-
-            for (
-                let i = 0;
-                i < drops.length;
-                i++
-            ) {
-
-                const character =
-                    characters[
-                        Math.floor(
-                            Math.random() *
-                            characters.length
-                        )
-                    ];
-
-                ctx.fillText(
-                    character,
-                    i * 18,
-                    drops[i] * 18
-                );
-
-                if (
-                    drops[i] * 18 > height &&
-                    Math.random() > 0.975
-                ) {
-                    drops[i] = 0;
-                }
-
-                drops[i]++;
-            }
         }
 
+
         setInterval(
-            matrixEffect,
-            50
+            createFire,
+            300
         );
 
     </script>
